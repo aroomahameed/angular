@@ -1,0 +1,17 @@
+<div class="modal-header panel-hdr bg-primary-700 bg-success-gradient">
+  <h4 class="modal-title">
+    {{ title }}
+    <small class="m-0 text-white-50">
+      {{ description }}
+    </small>
+  </h4>
+  <button type="button" class="close" (click)="modalRef.hide()" tabindex="-1">
+    <span aria-hidden="true"><i class="fal fa-times text-white-50"></i></span>
+  </button>
+</div>
+<div class="modal-body">
+  <ng-content></ng-content>
+</div>
+<!-- <div class="modal-footer border-faded border-left-0 border-right-0 border-bottom-0">
+  <ng-content select="[footer]"></ng-content>
+</div> -->

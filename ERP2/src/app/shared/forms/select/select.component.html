@@ -1,0 +1,28 @@
+<div class="form-group">
+  <label class="form-label" [for]="id">{{ label }}</label>
+  <select
+    (change)="onChange($event)"
+    [formControl]="control"
+    class="form-control {{
+      control.invalid && control.touched && control.dirty ? 'is-invalid' : ''
+    }}"
+    [id]="id"
+  >
+  <option value="null">Select an Option</option>
+  <option *ngFor="let item of items | async" [value]='item.id'>{{getName(item)}}</option>
+  </select>
+  <div class="invalid-feedback">
+    <span *ngIf="control.errors && control.errors['max']"
+      >{{ label }} must be less than {{ control.errors["max"]["max"] }}</span
+    >
+    <span *ngIf="control.errors && control.errors['min']"
+      >{{ label }} must be greater than {{ control.errors["min"]["min"] }}</span
+    >
+    <span *ngIf="control.errors && control.errors['email']"
+      >{{ label }} must be a valid email</span
+    >
+    <span *ngIf="control.errors && control.errors['required']">{{
+      error
+    }}</span>
+  </div>
+</div>

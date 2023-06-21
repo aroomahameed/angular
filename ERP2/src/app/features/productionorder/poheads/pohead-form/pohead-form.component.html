@@ -1,0 +1,94 @@
+
+<smart-modal title="{{title}}  PO Head">
+    <form [formGroup]="fg" (ngSubmit)="onSubmit($event)">
+        <div class="panel-content">
+            <div class="row">
+                <div class="col-md-4">
+                    <smart-select formControlName='client' [items]='client' (changeEvt)="onChangeClient($event)"  label="Client"></smart-select>
+                </div>
+                <div class="col-md-4">
+                    <smart-select formControlName='customer' [items]='customer' label="Customer"></smart-select>
+                </div>
+                <div class="col-md-4">
+                    <smart-select formControlName='factory' [items]='factorycode' name='code' label="Factory Code">
+                    </smart-select>
+                </div>
+                <div class="col-md-4">
+                    <smart-select formControlName='identifier' [items]='serviceidentifier' label="Service Identifier">
+                    </smart-select>
+                </div>
+                <div class="col-md-4" *ngIf="pohead">
+                    <smart-select formControlName='delay_reason' [items]='delayreasoncode' name='code' label="Delay Reason Code">
+                    </smart-select>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='po_number' label="PO Number"></smart-input>
+                </div>
+
+                <div class="col-md-4">
+                    <smart-input formControlName='customer_order_no' label="Customer Order Number">
+                    </smart-input>
+                </div>
+
+                <div class="col-md-4">
+                    <smart-input formControlName='entry_date' label="Enty Date" type="date">
+                    </smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='customer_req_date' label="Customer Req Date" type="date">
+                    </smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='production_date' label="Production Date" type="date">
+                    </smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='delivery_date' label="Delivery Date" type="date">
+                    </smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='last_ship_date' label="Last Ship Date(LPD)" type="date">
+                    </smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-select formControlName='ship_mode' [items]='shipmode' label="Ship Mode">
+                    </smart-select>
+                </div>
+                <div class="col-md-4">
+                    <smart-select formControlName='payment_mode' [items]='paymentmode' label="Payment Mode">
+                    </smart-select>
+                </div>
+                <div class="col-md-4">
+                    <smart-select formControlName='order_type' [items]='ordertype' label="Order Type">
+                    </smart-select>
+                </div>
+                <div class="col-md-4">
+                    <smart-select (changeEvt)="onStatusChange($event)" formControlName='order_status' [items]='orderstatus' label="Order Status">
+                    </smart-select>
+                </div>
+                <div class="col-md-4" *ngIf="orderStatus && orderStatus == 'Cancel'">
+                    <smart-input formControlName='cancel_date' label="Cancel Date" type="date"></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='mtfc_no' label="MTFC Number"></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='description' label="Description "></smart-input>
+                </div>
+
+                <div class="col-md-12">
+                    <smart-checkbox formControlName='lock_status' label="Lock Status"></smart-checkbox>
+                </div>
+                <div class="col-md-12">
+                    <smart-checkbox formControlName='status' label="Status"></smart-checkbox>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="border-faded border-left-0 border-right-0 border-bottom-0 d-flex flex-row align-items-center">
+            <button type="submit" class="btn btn-primary ml-auto waves-effect waves-themed mt-2"
+>{{title === 'Add' ? 'Save' : 'Save'}}</button>
+        </div>
+    </form>
+</smart-modal>

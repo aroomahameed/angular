@@ -1,0 +1,125 @@
+<div class="table-container table-responsive-md my-3" *ngIf="_items as dataItems">
+    <div class="row mb-3">
+        <div class="col-sm-12 col-md-5 col-lg-3">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <label for="search" class="input-group-text"><i class="fal fa-search"></i></label>
+                </div>
+                <input id="search" type="text" (keyup)="onSearch($event)"
+                    class="form-control border-top-left-radius-0 border-bottom-left-radius-0 ml-0 width-lg shadow-inset-1"
+                    placeholder="Search">
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-5 col-lg-3 ml-md-auto mt-2 mt-md-0" style="max-width: 200px">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <label for="select_items" class="input-group-text">Show</label>
+                </div>
+                <select (change)="onItemCountChange($event)" id="select_items" name="dt-basic-example_length"
+                    aria-controls="dt-basic-example" class="form-control custom-select">
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="-1">All</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="btn btn-danger" *ngIf="selectedItems.length > 0" (click)="onDeleteMany()">Delete
+                {{selectedItems.length}} {{selectedItems.length > 1 ? 'Items' : 'Item'}}</div>
+        </div>
+    </div>
+
+    <table class="table table-hover table-stripped table-bordered {{tableClasses}}">
+        <thead class="{{headerClasses}} text-white">
+            <tr>
+                <th style="width: 70px" class="text-center" *ngIf="selectable">
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" id="select_all" type="checkbox"
+                            (change)="onSelectAll($event, dataItems)">
+                        <label class="custom-control-label" for="select_all"></label>
+                    </div>
+
+                </th>
+                <th style="width: 100px; text-align: center">Sr</th>
+                <th (click)="onSort(d)" *ngFor="let d of columns" id="{{d.value}}" [ngStyle]="{'width': d.bool ? '100px' : '', 'text-align': d.bool ? 'center' : (d.align ? d.align : '')}">
+                    <span (click)="onSort(d)" class="d-inline-block">{{d.title}}</span>
+                    <i [ngClass]="{'fa-angle-up': d.sort === 'asc', 'fa-angle-down': d.sort === 'desc' }"
+                        class="fal text-white-50 ml-2"></i>
+                </th>
+                <th *ngIf="showActions()">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of dataItems | slice:startIndex:endIndex; let i = index">
+                <td style="width: 70px" class="text-center" *ngIf="selectable">
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" id="select_item_{{item.name}}" type="checkbox"
+                            [value]="item" (change)="onItemSelect(item)" [checked]="isItemSelected(item)">
+                        <label class="custom-control-label" for="select_item_{{item.name}}"></label>
+                    </div>
+
+                </td>
+             
+                <td  style="width: 100px; text-align: center">{{startIndex + i + 1}}</td>
+                <td
+                        *ngFor="let d of columns"
+                        (click)="d.clickable ? onClick(item) : null"
+                        [ngStyle]="{'width': d.bool ? '100px' : (d.width ? d.width+'px' : ''),
+                        'text-align': d.bool ? 'center' : (d.align ? d.align : ''), 'cursor': d.clickable ? 'pointer': ''}">
+                    <ng-container *ngIf="d.bool;else second">
+                        <span class="badge" 
+                            [ngClass]="{'badge-success': item[d.value], 'badge-secondary' : !item[d.value]}">
+                            {{item[d.value] ? (d.boolText ? d.boolText.yes : 'Active') : (d.boolText ? d.boolText.no : 'In-Active')}}
+                        </span>
+                    </ng-container>
+                    <ng-template #second>
+                        <ng-container *ngIf="d.image;else third">
+                            <img src="{{item[d.value]}}" alt="{{d.value}}"  class="rounded-circle" style="width: 50px; height: 50px">
+                            <!-- <img src="{{item[d.name]}}" alt="{{d.name}}" class="rounded-circle" style="width: 50px; height: 50px"> -->
+                        </ng-container>
+                    </ng-template>
+                    <ng-template #third>
+                        {{ d.date
+                            ? (getName(item, d.value) | date: d.dateFormat ? d.dateFormat : 'MMM dd , yyyy')
+                            : (d.money ? (getName(item, d.value) | number) : getName(item, d.value))
+                        }}
+                    </ng-template>
+
+                </td>
+
+                <td *ngIf="showActions()" style="width: 150px; text-align: center">
+                    <!-- <ng-content select="[buttons]"></ng-content> -->
+                    <button *ngIf="View" (click)="onView(item)" class="btn btn-success badge mr-2" [tooltip]="ViewToolTip">
+                        <i class="fal fa-eye px-2 py-1"></i>
+                    </button>
+                    <button *ngIf="createNext" (click)="onCreateNext(item)" class="btn btn-warning badge mr-2" [tooltip]="createNextToolTip">
+                        <i class="fal fa-plus px-2 py-1"></i>
+                    </button>
+                    <button *ngIf="editable" (click)="onEdit(item)" class="btn btn-info badge" tooltip="edit"><i
+                            class="fal fa-edit px-2 py-1"></i></button>
+                    <button *ngIf="deletable" (click)="onDelete(item)" class="btn btn-danger badge ml-2" tooltip="delete"><i
+                            class="fal fa-trash px-2 py-1"></i></button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="row">
+
+        <div class="col-md-6 ml-auto d-flex justify-content-end" *ngIf="totalItems / itemsPerPage > 1">
+            <pagination [boundaryLinks]="true" [itemsPerPage]="itemsPerPage" [totalItems]="totalItems" [maxSize]="5"
+                (numPages)="numPages = $event" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+                nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+            </pagination>
+        </div>
+    </div>
+
+</div>

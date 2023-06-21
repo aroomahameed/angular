@@ -1,0 +1,99 @@
+<smart-modal title="{{title}} Company Info">
+    <form [formGroup]="fg" (ngSubmit)="onSubmit($event)">
+        <div class="panel-content">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="col-md-12">
+                        <smart-input formControlName='name' label="Name"></smart-input>
+                    </div>
+                    <div class="col-md-12">
+                        <smart-input formControlName='code' label="Code"></smart-input>
+                    </div>
+                    <div class="col-md-12">
+                        <smart-input formControlName='address' label="Address"></smart-input>
+                      
+                    </div>
+
+
+                </div>
+                <div class="col-md-3 mb-3 ">
+                    <label class="form-label">Company Logo<span class="text-danger">*</span> </label>
+                    <img [src]="imageurl" style="height: 130px; width: 130px;"><br>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="Image" id="logo" required
+                            (change)="handlefileinput($event.target.files)" required id="logo">
+                        <label class="custom-file-label" for="logo">Choose file</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <smart-input formControlName='legal_name' label="Legal Name"></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='owner_name' label="Owner Name"></smart-input>
+                </div>
+                <div class="col-md-6">
+                <smart-input formControlName='reg_date' label="Registeration Date" type='date'></smart-input>
+                </div>
+               
+                <div class="col-md-6">
+                    <smart-input formControlName='email' label="Email"></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-select formControlName='country' [items]="countries" label="Country " ></smart-select>
+                </div>
+              
+                <div class="col-md-4">
+                    <smart-input formControlName='phone' label="Phone " type='number'></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='fax' label="FAX " type='number'></smart-input>
+                </div>
+                
+                <div class="col-md-4">
+                    <smart-input formControlName='vat' label="VAT " type='number'></smart-input>
+                </div>
+                
+                <div class="col-md-4">
+                    <smart-input formControlName='gst' label="GST " type='number'></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='ntn' label="NTN " type='number'></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='website' label="Website " ></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='invoice_email' label="Invoice Email" ></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='admin_name' label="Admin Name " ></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='admin_email' label="Admin Email" ></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='admin_phone' label="Admin Phone " type='number' ></smart-input>
+                </div> 
+                
+                <div class="col-md-12">
+                    <smart-checkbox formControlName='status' label="Status"></smart-checkbox>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+        <div class="border-faded border-left-0 border-right-0 border-bottom-0 d-flex flex-row align-items-center">
+            <button type="submit" class="btn btn-primary ml-auto waves-effect waves-themed mt-2"
+                type="submit">{{title === 'Add' ? 'Save' : 'Update'}}</button>
+        </div>
+
+    </form>
+</smart-modal>

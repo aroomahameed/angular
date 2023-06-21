@@ -1,0 +1,48 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <div class="row mb-3" *ngFor="let d of data">
+    <div [class]="columns(d.row)" *ngFor="let row of d.row">
+      <smart-input
+        *ngIf="
+          !row.type ||
+          row.type === 'text' ||
+          row.type === 'number' ||
+          row.type === 'email' ||
+          row.type === 'date'
+        "
+        [label]="row.label"
+        [formControlName]="row.name"
+        [type]="row.type"
+      ></smart-input>
+      <smart-checkbox
+        *ngIf="row.type && (row.type === 'checkbox' || row.type === 'check')"
+        [checkedLabel]="row.checkedLabel ? row.checkedLabel : 'Active'"
+        [unCheckedLabel]="row.unCheckedLabel ? row.unCheckedLabel : 'In-Active'"
+        [formControlName]="row.name"
+        [label]="row.label"
+      ></smart-checkbox>
+      <smart-select
+        *ngIf="row.type && (row.type === 'select' || row.type === 'combobox')"
+        [formControlName]="row.name"
+        [items]="row.items"
+        [label]="row.label"
+      ></smart-select>
+    </div>
+  </div>
+
+  <div
+    class="border-faded border-left-0 border-right-0 border-bottom-0 d-flex flex-row align-items-center"
+  >
+    <button
+      class="btn btn-primary ml-auto waves-effect waves-themed mt-2"
+      type="submit"
+    >
+      Submit
+    </button>
+    <button
+      class="btn btn-secondary ml-2 waves-effect waves-themed mt-2"
+      type="reset" (click)="onClear()"
+    >
+      Clear
+    </button>
+  </div>
+</form>

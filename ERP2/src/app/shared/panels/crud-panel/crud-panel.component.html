@@ -1,0 +1,18 @@
+<!-- <smart-page-heading [title]="title" [icon]="icon" [description]="description"></smart-page-heading> -->
+<smart-panel [fullscreenable]="fullscreenable">
+    <h2 panelTitle>
+        <ng-content select="[title]"></ng-content>
+    </h2>
+    <div panelToolbar class="mr-4">
+        <button class="btn btn-primary" (click)="onCreate()"><i class="fal fa-plus-circle"></i> Create</button>
+        <ng-content select="[toolbar]"></ng-content>
+    </div>
+    
+    <div panelContent>
+        <smart-table [items]="items" [columns]="columns" (deleteEvt)="onDelete($event)" (editEvt)="onEdit($event)" 
+         [deletable]="deleteable" [editable]="editable" [createNextToolTip] = "createNextTooltip"
+         (createNextEvt)="onCreateNext($event)" [createNext]="createNext">
+
+        </smart-table>
+    </div>
+</smart-panel>

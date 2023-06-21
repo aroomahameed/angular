@@ -1,0 +1,80 @@
+<smart-modal title="{{title}} Project">
+    <form [formGroup]="fg" (ngSubmit)="onSubmit($event)">
+        <div class="row">
+            <div class="col-md-6">
+                <smart-input formControlName='name' label=" Project Name"></smart-input>
+            </div>
+            <div class="col-md-6">
+                <smart-input formControlName='lab_no' label="Lab No" type='number'></smart-input>
+            </div>
+            <div class="col-md-6">
+                <smart-input formControlName='start_date' label="Start Date" type='date'></smart-input>
+            </div>
+            <div class="col-md-6">
+                <smart-input formControlName='end_date' label="End Date" type='date'></smart-input>
+            </div>
+
+            <div class="col-md-12">
+                <smart-input formControlName='remarks' label="Remarks"></smart-input>
+            </div>
+            <div class="col-md-12">
+                <smart-checkbox formControlName='status' label="Status"></smart-checkbox>
+            </div>
+
+        </div>
+
+
+        <div class="d-flex align-items-end justify-content-end">
+            <button class="btn btn-primary ml-auto waves-effect waves-themed mt-2" type="submit"
+                *ngIf="!viewStatus">{{title === 'Add' ? 'Save' : 'Update'}}</button>
+        </div>
+    </form>
+    <div *ngIf="projectId">
+
+        <tabset>
+            <tab heading="Material Tests">
+                <smart-panel [collapsible]="false">
+
+
+                    <button panelToolbar class="btn btn-warning" *ngIf="!viewStatus" (click)="oncreatematerial()"> <i
+                            class="fal fa-plus-circle"></i> Create</button>
+
+
+                    <div panelContent>
+                        <smart-table [items]="materialtest" [columns]="columns" [selectable]=" false"
+                            [editable]="viewStatus ? false : true" [deletable]="viewStatus ? false : true"
+                            ViewToolTip="View" [View]="viewStatus ? true : false" (editEvt)="onEditmaterial($event) "
+                            (deleteEvt)="ondeleteMaterial($event) " (viewEvent)="onshowMaterial($event)">
+                        </smart-table>
+                    </div>
+                </smart-panel>
+            </tab>
+            <tab heading="Balls Tests">
+                <smart-panel [collapsible]="false">
+
+
+                    <button panelToolbar class="btn btn-warning" *ngIf="!viewStatus" (click)="oncreateball()"> <i
+                            class="fal fa-plus-circle"></i> Create</button>
+
+
+                    <div panelContent>
+                        <smart-table [items]="balltest" [columns]="columns2" [selectable]="false"
+                            [editable]="viewStatus ? false : true" [deletable]="viewStatus ? false : true"
+                            ViewToolTip="View" [View]="viewStatus ? true : false" (editEvt)="onEditball($event) "
+                            (deleteEvt)="ondeleteball($event)" (viewEvent)="onshowball($event)">
+                        </smart-table>
+                    </div>
+                </smart-panel>
+            </tab>
+
+        </tabset>
+
+
+    </div>
+
+
+
+    <!-- {{(currentProject | async)?.id}} -->
+
+
+</smart-modal>

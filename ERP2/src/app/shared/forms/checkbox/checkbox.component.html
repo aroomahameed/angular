@@ -1,0 +1,9 @@
+<div class="form-group row">
+    <div class="col-md-2">
+        <label>{{label}}</label>
+    </div>
+    <div class="custom-control custom-checkbox col-md-10">
+        <input #input type="checkbox" class="custom-control-input" [id]="id" [formControl]="control">
+        <label class="custom-control-label" [for]="id">{{input.checked ? checkedLabel : unCheckedLabel}}</label>
+    </div>
+</div>
