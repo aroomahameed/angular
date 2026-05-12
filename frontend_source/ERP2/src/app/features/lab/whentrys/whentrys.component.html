@@ -1,0 +1,61 @@
+<smart-modal title="{{title}} WH Entry">
+    <form [formGroup]="fg" (ngSubmit)="onSubmit($event)">
+        <div class="panel-content">
+            <div class="row">
+             
+             
+                
+                <div class="col-md-6">
+                    <smart-input formControlName='serial_no' label="Serial No" ></smart-input>
+                </div>
+                <!-- <div class="col-md-6">
+                    <smart-select formControlName='material' [items]='allmaterials' (changeEvt)="onChangeMaterial($event)" label="Material Code" ></smart-select>
+                </div> -->
+               
+
+                <div class="col-md-6">
+                    <smart-input formControlName='test_name'  label="Test name" ></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='print_panels' label="Print Panels" ></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='new_ball' label="New Ball" ></smart-input>
+                </div>
+              
+                <div class="col-md-6">
+                    <smart-input formControlName='drum_test' label="Drum Test" ></smart-input>
+                </div
+                
+                >
+                <div class="col-md-6">
+                    <smart-input type="number" formControlName='hydrolysis'   label="Hydrolysis" ></smart-input>
+                </div>
+              
+                <div class="col-md-6">
+                    <smart-input type="number" formControlName='shooter'   label="Shooter" ></smart-input>
+                </div>
+              
+               
+                <div class="col-md-6">
+                    <smart-input formControlName='carton_number' label="Carton Number" ></smart-input>
+                </div>
+                
+                <div class="col-md-12">
+                    <smart-select formControlName='carton_status' [items]='cartonstatus'  label="Carton Status" ></smart-select>
+                </div> 
+
+                <div class="col-md-12">
+                    <smart-checkbox formControlName='status'  label="Status"></smart-checkbox>
+                </div>
+
+            </div>
+
+           
+        </div>
+        <div class="border-faded border-left-0 border-right-0 border-bottom-0 d-flex flex-row align-items-center">
+            <button type="submit" class="btn btn-primary ml-auto waves-effect waves-themed mt-2"
+                type="submit">{{title === 'Add' ? 'Save' : 'Save'}}</button>
+        </div>
+    </form>
+</smart-modal>

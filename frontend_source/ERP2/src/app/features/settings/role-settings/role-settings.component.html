@@ -1,0 +1,61 @@
+<div class="subheader">
+  <h1 class="subheader-title">
+    <i class="fal fa-user-shield"></i>
+    Role Settings
+  </h1>
+</div>
+
+<div class="panel">
+  <div class="panel-hdr">
+    <h2>Menu Authorization</h2>
+    <div class="panel-toolbar">
+      <button class="btn btn-sm btn-primary" type="button" (click)="save()" [disabled]="saving">
+        {{ saving ? 'Saving...' : 'Save Permissions' }}
+      </button>
+    </div>
+  </div>
+  <div class="panel-container show">
+    <div class="panel-content">
+      <alert *ngIf="saved" type="success" [dismissible]="true">Permissions saved. The menu updates immediately for the current session.</alert>
+      <alert *ngIf="error" type="danger" [dismissible]="true">{{ error }}</alert>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover permission-table">
+          <thead>
+            <tr>
+              <th class="permission-group">Menu Group</th>
+              <th>Menu Item</th>
+              <th>Route</th>
+              <th class="permission-check">User</th>
+              <th class="permission-check">Admin</th>
+              <th class="permission-check">Super Admin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of rows">
+              <td>{{ row.group }}</td>
+              <td>{{ row.title }}</td>
+              <td><code>{{ row.routerLink }}</code></td>
+              <td class="permission-check">
+                <input
+                  type="checkbox"
+                  [checked]="checked('user', row.routerLink)"
+                  (change)="toggle('user', row.routerLink, $event.target.checked)">
+              </td>
+              <td class="permission-check">
+                <input
+                  type="checkbox"
+                  [checked]="checked('admin', row.routerLink)"
+                  [disabled]="row.routerLink === '/settings/role-settings'"
+                  (change)="toggle('admin', row.routerLink, $event.target.checked)">
+              </td>
+              <td class="permission-check">
+                <input type="checkbox" checked disabled>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

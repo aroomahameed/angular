@@ -1,0 +1,29 @@
+<smart-modal title="{{title}}  PO Sub">
+    <form [formGroup]="fg" (ngSubmit)="onSubmit($event)">
+        <div class="panel-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <smart-select formControlName='production_order' [items]="poheads" name='po_number'
+                        label="Production Order"></smart-select>
+                </div>
+                <div class="col-md-12">
+                    <smart-select formControlName='model' [items]="models" (changeEvt)="onChangeModel($event)"
+                        label="Model"></smart-select>
+                </div>
+                <div class="col-md-12">
+                    <smart-select formControlName='article' [items]='articles' label="Article"></smart-select>
+                </div>
+                <div class="col-md-12">
+                    <smart-checkbox formControlName='status' label="Status"></smart-checkbox>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="border-faded border-left-0 border-right-0 border-bottom-0 d-flex flex-row align-items-center">
+            <button type="submit" class="btn btn-primary ml-auto waves-effect waves-themed mt-2" type="submit">{{title
+                === 'Add' ? 'Save' : 'Save'}}</button>
+        </div>
+    </form>
+</smart-modal>

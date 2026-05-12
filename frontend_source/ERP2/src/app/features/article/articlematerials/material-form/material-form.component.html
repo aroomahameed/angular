@@ -1,0 +1,76 @@
+<smart-modal title="{{title}} Material">
+    <form [formGroup]="fg" (ngSubmit)="onSubmit($event)">
+        <div class="panel-content">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <smart-select formControlName='client' [items]="clients"   (changeEvt)="onChangeClient($event)" label="Client" ></smart-select>
+                </div>
+                <div class="col-md-6">
+                    <smart-select formControlName='model' [items]="model"  (changeEvt)="onChangeModel($event)" label="Model"></smart-select>
+                </div>
+                <div class="col-md-6">
+                    <smart-select formControlName='article' label="Article" (changeEvt)="onChangeArticle($event)" [items]="article"></smart-select>
+                </div>
+                <div class="col-md-6">
+                    <smart-select formControlName='size' [items]="sizes" label="Size" (changeEvt)="onChangeArticlesize($event)" name='size' ></smart-select>
+                </div>
+                <div class="col-md-6">
+                    <smart-select formControlName='production_line' [items]="productionlines" label="Production Line"  name='name' ></smart-select>
+                </div>
+                
+                <div class="col-md-6">
+                    <smart-input formControlName='serial_no' label="Serial No" ></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-select formControlName='material' [items]='allmaterials' (changeEvt)="onChangeMaterial($event)" label="Material Code" ></smart-select>
+                </div>
+                <!-- <div class="col-md-6">
+                    <smart-select formControlName='base_uom' [items]='allmaterial' label="Base UOM" [name]="['base_uom', 'name']"  ></smart-select>
+                </div> -->
+
+                <div class="col-md-6">
+                    <smart-input formControlName='width'  label="Width" ></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='length' label="Length" ></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='height' label="Height" ></smart-input>
+                </div>
+                <!-- <div class="col-md-6">
+                    <smart-select formControlName='type' [items]='options' (changeEvt)="onChangeType($event)"  label="Calculation Type" ></smart-select>
+                </div> -->
+                <div class="col-md-6">
+                    <smart-input formControlName='cutting_time' label="Cutting Time" ></smart-input>
+                </div
+                >
+                <div class="col-md-6">
+                    <smart-input type="number" formControlName='mat_formula'   label="Mat Formula" ></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input type="number" formControlName='mat_extra' label="Material Extra" ></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input type="number" formControlName='total_formula' label="Total Formula" value='total' ></smart-input>
+                </div>
+            
+               
+                <div class="col-md-12">
+                    <smart-input formControlName='mat_description' label="Material Description" ></smart-input>
+                </div>
+
+                <div class="col-md-12">
+                    <smart-checkbox formControlName='status'  label="Status"></smart-checkbox>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="border-faded border-left-0 border-right-0 border-bottom-0 d-flex flex-row align-items-center">
+            <button type="submit" class="btn btn-primary ml-auto waves-effect waves-themed mt-2"
+                type="submit">{{title === 'Add' ? 'Save' : 'Save'}}</button>
+        </div>
+    </form>
+</smart-modal>

@@ -1,0 +1,163 @@
+<smart-modal title="{{title}} Purchase Order">
+    <form [formGroup]="fg" (ngSubmit)="onSubmit($event)">
+        <div class="panel-content">
+            <div class="row">
+                <div class="col-md-3">
+                    <smart-select formControlName='vendor' [items]="vendor" label="Vendor"></smart-select>
+                </div>
+                <div class="col-md-3">
+                    <smart-input formControlName='date' label="Date" type='date'></smart-input>
+                </div>
+                <div class="col-md-3">
+                    <smart-input formControlName='req_date' label="Request Date" type='date'></smart-input>
+                </div>
+                <div class="col-md-3">
+                    <smart-select formControlName='payment_term' [items]="paymentterm" label="Payment Terms">
+                    </smart-select>
+                </div>
+                <div class="col-md-3">
+                    <smart-input formControlName='deliver_to' label="Deliver to"></smart-input>
+                </div>
+                <div class="col-md-3">
+                    <smart-input formControlName='purchaser' label="Purchase Representative"></smart-input>
+                </div>
+                <div class="col-md-3">
+                    <smart-input formControlName='billing_status' label="Billing Status"></smart-input>
+                </div>
+
+                <div class="col-md-3">
+                    <smart-select formControlName='other_charges' [items]="poothercharge" label="PO Other Charges">
+                    </smart-select>
+                </div>
+                <div class="col-md-3">
+                    <smart-select formControlName='trans_mode' [items]="transportmodes" label="Transport Mode">
+                    </smart-select>
+                </div>
+                <div class="col-md-3">
+                    <smart-input formControlName='special_note' label="Special Note"></smart-input>
+                </div>
+                <div class="col-md-3">
+                    <smart-input formControlName='discount' label="Discount "></smart-input>
+                </div>
+                <div class="col-md-12">
+                    <smart-checkbox formControlName='status' label=" PO Status"></smart-checkbox>
+                </div>
+            </div>
+
+
+
+
+            <div class="d-flex align-items-end justify-content-end">
+                <button class="btn btn-primary ml-auto waves-effect waves-themed mt-2"
+                    type="submit">{{title === 'Add' ? 'Save' : 'Update'}}</button>
+            </div>
+
+        </div>
+    </form>
+    <br>
+    <div *ngIf="POId">
+        <form [formGroup]="fh" (ngSubmit)="onSubmititem($event)">
+
+
+            <table class="table table-sm table-bordered ">
+                <thead class="bg-primary text-white" style="text-align: center;">
+                    <th>Sr#</th>
+                    <th>Items</th>
+                    <th>Quantity</th>
+                    <th>UOM</th>
+                    <th>Tax</th>
+                    <th>Unit Price</th>
+                    <th>Sub Total</th>
+                    <th>Net Value</th>
+                    <th>Rec Status</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </thead>
+                <tr>
+                    <td></td>
+                    <td style="width: 15%;">
+                        <smart-select formControlName='material' [items]="materials" label="">
+                        </smart-select>
+                    </td>
+                    <td style="width: 10%;">
+                        <smart-input formControlName='quantity' label=""  type="number"></smart-input>
+                    </td>
+                    <td style="width: 15%;">
+                        <smart-select formControlName='uom' [items]="uoms" label="">
+                        </smart-select>
+                    </td>
+                    <td style="width: 15%;">
+                        <smart-select formControlName='tax' [items]="taxes" label="">
+                        </smart-select>
+                    </td>
+                    <td style="width: 10%;">
+                        <smart-input formControlName='unit_price' label="" type="number"></smart-input>
+                    </td>
+                    <td style="width: 2%;"></td>
+                    <td style="width: 2%;"></td>
+                    <td style="width: 15%;">
+                        <br>
+                        <smart-checkbox formControlName='rec_status' label="*"></smart-checkbox>
+                    </td>
+                    <td style="width: 15%;">
+                        <br>
+                        <smart-checkbox formControlName='status' label=" "></smart-checkbox>
+                    </td>
+                    <td>
+                        <div class="d-flex align-items-end justify-content-end">
+                            <button class="btn btn-primary btn-sm ml-auto waves-effect waves-themed mt-2"
+                                type="submit">Save</button>
+                        
+                            <button class="btn btn-secondary btn-sm ml-auto waves-effect waves-themed mt-2" type="button" (click)="onEdit()"
+                               >Clear</button>
+                        </div>
+                    </td>
+
+
+                </tr>
+                <tr *ngFor="let item of items | async; let i = index; let total;">
+                    <td>{{i + 1}}</td>
+                    <td>{{item.material.name}}</td>
+                    <td style="text-align: center;">{{item.quantity| number}}</td>
+                    <td>{{item.uom.name}}</td>
+                    <td>{{item.tax.name}}</td>
+                    <td style="text-align: right;">{{item.unit_price | number}}</td>
+                    <td style="text-align: right;">{{item.quantity*item.unit_price | number}}</td>
+                    <!-- <td style="text-align: right;">{{(item.quantity*item.unit_price/item.tax.percent)}}</td> -->
+                    <td style="text-align: right;">{{+(item.quantity*item.unit_price)+(item.quantity*item.unit_price/item.tax.percent)}}
+                    </td>
+                    <td style="text-align: center;">
+                        <div *ngIf="item.status==true" class="badge badge-success ">Active</div>
+                        <div *ngIf="item.status==false" class='badge badge-secondary'>Disabled</div>
+                    </td>
+                    <td style="text-align: center;">
+                        <div *ngIf="item.rec_status==true" class="badge badge-success ">Active</div>
+                        <div *ngIf="item.rec_status==false" class='badge badge-secondary'>Disabled</div>
+                    </td>
+                    <td style="width: 100px; text-align: center"> <button type="button" (click)="onEdit(item)"
+                            class="btn btn-info badge"><i class="fal fa-edit px-2 py-1"></i></button>
+                        <button type="button" (click)="ondelete(item)" class="btn btn-danger badge ml-2"><i
+                                class="fal fa-trash px-2 py-1"></i></button></td>
+                </tr>
+                <tr>
+                    <td class="text-right mr-2" colspan="7"><b>UnTax Amount: </b></td>
+                    <td style="text-align: right;"><b>{{(total | async) | number}}</b></td>
+                </tr>
+                <tr>
+                    <td class="text-right mr-2" colspan="7"><b>Taxes: </b></td>
+                    <td style="text-align: right;"><b>{{(tax_total | async) | number}}</b></td>
+                </tr>
+                <tr>
+                    <td class="text-right mr-2" colspan="7"><b>Gross Amount: </b></td>
+                    <td style="text-align: right;"><b>{{(net_total | async) | number}}</b></td>
+                </tr>
+            </table>
+
+
+        </form>
+    </div>
+
+
+
+
+</smart-modal>

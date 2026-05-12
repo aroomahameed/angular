@@ -39,6 +39,7 @@ export class CustomersComponent implements OnInit {
     this.country = this.store.select(selectAllCountries)
     this.store.dispatch(loadRegions())
     this.region = this.store.select(selectAllRegions)
+    
     this.form = [
       {
         row: [

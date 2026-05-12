@@ -1,0 +1,27 @@
+<div class="auth-page">
+  <form class="auth-panel" (ngSubmit)="login()">
+    <h1 class="h4 mb-2">ERP Login</h1>
+    <p class="text-muted mb-4">Sign in with a demo account.</p>
+
+    <div *ngIf="error" class="alert alert-danger py-2">{{ error }}</div>
+
+    <div class="form-group">
+      <label>Username</label>
+      <input class="form-control" name="username" [(ngModel)]="username" autocomplete="username" required>
+    </div>
+
+    <div class="form-group">
+      <label>Password</label>
+      <input class="form-control" name="password" [(ngModel)]="password" type="password" autocomplete="current-password" required>
+    </div>
+
+    <button class="btn btn-primary btn-block" type="submit" [disabled]="loading">
+      {{ loading ? 'Signing in...' : 'Sign In' }}
+    </button>
+
+    <div class="mt-4 small text-muted">
+      Demo users: <code>user</code>, <code>admin</code>, <code>superadmin</code><br>
+      Password for all: <code>password</code>
+    </div>
+  </form>
+</div>

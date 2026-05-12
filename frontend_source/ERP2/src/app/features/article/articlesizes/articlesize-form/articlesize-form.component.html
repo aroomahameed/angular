@@ -1,0 +1,87 @@
+<smart-modal title="{{title}} Article Size">
+    <form [formGroup]="fg" (ngSubmit)="onSubmit($event)">
+        <div class="panel-content">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <smart-select formControlName='client' [items]="clients"   (changeEvt)="onChangeClient($event)" label="Client" ></smart-select>
+                </div>
+                <div class="col-md-6">
+                    <smart-select formControlName='model' [items]="model"  (changeEvt)="onChangeModel($event)"label="Model"></smart-select>
+                </div>
+                <div class="col-md-6">
+                    <smart-select formControlName='article' label="Article" [items]="articles"></smart-select>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='size' label="Size" ></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='customer_size' label="Customer Size" ></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='manufacturing_size' label="Manufacturing Size" ></smart-input>
+                </div>
+              
+                <div class="col-md-4">
+                    <smart-select formControlName='carton' label="Carton" [items]="carton" ></smart-select>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='qty_per_carton' type="number" label="Qty per Carton"></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='unit_price' type="number" label="Unit Price"></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='sale_price'  type="number" label="Sale Price"></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-select formControlName='base_uom' [items]="uom" label="Base UOM"></smart-select>
+                </div>
+                <div class="col-md-4">
+                    <smart-select formControlName='weight_uom' [items]="uom" label="Weight UOM"></smart-select>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='dimension'  label="Dimension"></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='tac_time'  label="Tac Time"></smart-input>
+                </div>
+                
+                <div class="col-md-4">
+                    <smart-input formControlName='reference'  label="Internal Reference"></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='net_weight'  type="number" label="Net Weight"></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='net_net_weight' type="number" label="Net Net Weight(kgs)"></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='barcode'  label=" Internal Barcode"></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='ean_barcode'  label="EAN Barcode"></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='upc_barcode'  label="UPC Barcode"></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='any_other_barcode'  label="Any other barcode"></smart-input>
+                </div>
+                <div class="col-md-12">
+                    <smart-input formControlName='description'  label="Description"></smart-input>
+                </div>
+                <div class="col-md-12">
+                    <smart-checkbox formControlName='status'  label="Status"></smart-checkbox>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="border-faded border-left-0 border-right-0 border-bottom-0 d-flex flex-row align-items-center">
+            <button type="submit" class="btn btn-primary ml-auto waves-effect waves-themed mt-2"
+                type="submit">{{title === 'Add' ? 'Save' : 'Save'}}</button>
+        </div>
+    </form>
+</smart-modal>

@@ -1,0 +1,17 @@
+<smart-panel>
+    <h2 panelTitle>Material Seasons</h2>
+    <button panelToolbar class="btn btn-primary" (click)="onCreate()"> <i class="fal fa-plus-circle"></i> Create</button>
+
+    <div panelContent>
+        <smart-table 
+        [items]="materialseason" 
+        [columns]="columns" 
+        [selectable] = "false" 
+        [editable]="true" 
+        [deletable]="true" 
+        (editEvt)="onEdit($event)"
+        (deleteEvt)="ondelete($event)"
+        >
+        </smart-table>
+    </div>
+</smart-panel>

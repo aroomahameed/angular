@@ -1,0 +1,61 @@
+<smart-modal title="{{title}} Models">
+    <form [formGroup]="fg" (ngSubmit)="onSubmit($event)">
+        <div class="panel-content">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <smart-select formControlName='client' [items]="clients"    label="Client" ></smart-select>
+                </div>
+               
+                <div class="col-md-6">
+                    <smart-input formControlName='name' label=" Model Name" ></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='code' label="Model Code" ></smart-input>
+                </div>
+                <div class="col-md-6">
+
+                    <smart-select formControlName='category' [items]="category"    label="Category" ></smart-select>
+                </div>
+                <div class="col-md-6">
+
+                    <smart-select formControlName='season' [items]="season"    label="Season" ></smart-select>
+                </div>
+                <div class="col-md-6">
+
+                    <smart-select formControlName='factory' [items]="factorycode"  label="Factory Code" ></smart-select>
+                </div>
+                <div class="col-md-6">
+
+                    <smart-select formControlName='range' [items]="range"    label="Range" ></smart-select>
+                </div>
+                
+                <div class="col-md-6">
+                    <smart-input formControlName='working_no' label="Working No" ></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='event_desc' label="Event Description" ></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='ad_path' type="file" label="AD Path" ></smart-input>
+                </div>
+                <div class="col-md-12">
+                    <smart-input formControlName='description'  label="Description" ></smart-input>
+                </div>
+                <div class="col-md-12">
+                    <smart-checkbox formControlName='edit_status'  label="Edit Status"></smart-checkbox>
+                </div>
+                <div class="col-md-12">
+                    <smart-checkbox formControlName='status'  label="Status"></smart-checkbox>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="border-faded border-left-0 border-right-0 border-bottom-0 d-flex flex-row align-items-center">
+            <button type="submit" class="btn btn-primary ml-auto waves-effect waves-themed mt-2"
+                type="submit">{{title === 'Add' ? 'Save' : 'Save'}}</button>
+        </div>
+    </form>
+</smart-modal>

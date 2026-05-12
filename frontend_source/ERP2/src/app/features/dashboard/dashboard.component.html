@@ -1,0 +1,87 @@
+<div class="subheader dashboard-subheader">
+  <h1 class="subheader-title">
+    <i class="fal fa-chart-network"></i>
+    Production Dashboard
+  </h1>
+  <div class="subheader-block">Live demo KPIs</div>
+</div>
+
+<section class="kpi-grid">
+  <div class="kpi-card" *ngFor="let kpi of kpis">
+    <div class="kpi-icon" [ngClass]="'tone-' + kpi.tone">
+      <i [class]="kpi.icon"></i>
+    </div>
+    <div class="kpi-copy">
+      <span>{{ kpi.label }}</span>
+      <strong>{{ kpi.value }} <small>{{ kpi.unit }}</small></strong>
+      <em [ngClass]="'text-' + kpi.tone">{{ kpi.delta }}</em>
+    </div>
+  </div>
+</section>
+
+<div class="dashboard-grid">
+  <div class="panel">
+    <div class="panel-hdr">
+      <h2>Line Performance</h2>
+    </div>
+    <div class="panel-container show">
+      <div class="panel-content">
+        <div class="line-row" *ngFor="let line of lines">
+          <div class="line-meta">
+            <strong>{{ line.name }}</strong>
+            <span>{{ line.actual | number }} / {{ line.target | number }} pcs</span>
+          </div>
+          <div class="progress line-progress">
+            <div class="progress-bar bg-primary progress-animated" [style.width.%]="line.progress">
+              {{ line.progress }}%
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-hdr">
+      <h2>Production Mix</h2>
+    </div>
+    <div class="panel-container show">
+      <div class="panel-content">
+        <div class="mix-chart">
+          <div class="mix-bar" *ngFor="let item of productionMix" [style.height.%]="item.value">
+            <span>{{ item.value }}%</span>
+          </div>
+        </div>
+        <div class="mix-legend">
+          <span *ngFor="let item of productionMix">{{ item.label }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="panel-hdr">
+    <h2>Production Snapshot</h2>
+  </div>
+  <div class="panel-container show">
+    <div class="panel-content snapshot-grid">
+      <div>
+        <span class="text-muted">Shift</span>
+        <strong>Morning A</strong>
+      </div>
+      <div>
+        <span class="text-muted">Current PO</span>
+        <strong>PROD-2026-0001</strong>
+      </div>
+      <div>
+        <span class="text-muted">Top Article</span>
+        <strong>Demo Match Ball</strong>
+      </div>
+      <div>
+        <span class="text-muted">Dispatch Ready</span>
+        <strong>12,850 pcs</strong>
+      </div>
+    </div>
+  </div>
+</div>

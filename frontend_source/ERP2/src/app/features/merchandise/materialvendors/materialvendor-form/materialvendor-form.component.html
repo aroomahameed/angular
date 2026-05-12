@@ -1,0 +1,58 @@
+<smart-modal title="{{title}} Materials Vendors">
+    <form [formGroup]="fg" (ngSubmit)="onSubmit($event)">
+        <div class="panel-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <smart-select formControlName='vendor' [items]="vendors" label="Vendor"></smart-select>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='unit_price' label="Unit Price"></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-select formControlName='purchase_uom' [items]="uoms" label="Purchase UOM"></smart-select>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='other_charges' label="Other Charges"></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-select formControlName='currency' [items]="currencys" label="Currency"></smart-select>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='mat_supplier_name' label="Material Supplier Name"></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='min_order_qty' label="Min Order Qty"></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='lead_time' label="Lead Time"></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='speed_lead_time' label="Speed Lead Time"></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='width' label="Width"></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-select formControlName='width_uom' [items]="uoms" label="Width UOM"></smart-select>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='sample_time' label="Sample Time"></smart-input>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <smart-input formControlName='lead_time_remarks' label="Lead Time Ramarks"></smart-input>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <smart-input formControlName='remarks' label="Remarks"></smart-input>
+                </div>
+
+                <div class="col-md-12">
+                    <smart-checkbox formControlName='status' label="Vendor Status"></smart-checkbox>
+                </div>
+            </div>
+            <div class="border-faded border-left-0 border-right-0 border-bottom-0 d-flex flex-row align-items-center">
+                <button type="submit" class="btn btn-primary ml-auto waves-effect waves-themed mt-2"
+                    type="submit">{{title === 'Add' ? 'Save' : 'Update'}}</button>
+            </div>
+        </div>
+    </form>
+</smart-modal>

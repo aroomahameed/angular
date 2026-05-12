@@ -1,0 +1,186 @@
+<smart-modal title="{{title}} Materials">
+    <form [formGroup]="fg" (ngSubmit)="onSubmit($event)">
+        <div class="panel-content">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="col-md-12">
+                    <smart-input formControlName='name' label="Name"></smart-input>
+                    </div>
+                    <div class="col-md-12">
+                     <br>
+                        </div>
+                    <div class="col-md-12">
+                    <smart-checkbox formControlName='status' label="Status"></smart-checkbox>
+                    </div>
+                    
+                </div>
+                <div class="col-md-3 mb-3 ">
+                    <label class="form-label">Material Image<span class="text-danger">*</span> </label>
+                    <img [src]="imageurl" style="height: 130px; width: 130px;"><br>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="Image" id="image" required
+                            (change)="handlefileinput($event.target.files)" required id="image">
+                        <label class="custom-file-label" for="image">Choose file</label>
+                    </div>
+                </div>
+            </div>
+
+            <tabset>
+                <tab heading="Genral Information">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <smart-select formControlName='sub_category' [items]="subcategory" label="Sub Category">
+                            </smart-select>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <smart-input formControlName='barcode' label="Barcode"></smart-input>
+
+                        </div>
+                        <div class="col-md-6">
+                            <smart-input formControlName='hs_code' label="HS Code"></smart-input>
+
+                        </div>
+                        <div class="col-md-6">
+                            <smart-input formControlName='unit_price' label="Unit Price"></smart-input>
+                        </div>
+                        <div class="col-md-6">
+                            <smart-select formControlName='sale_uom' [items]="uoms" label="Sale UOM"></smart-select>
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <smart-select formControlName='base_uom' [items]="uoms" label="Base UOM"></smart-select>
+                        </div>
+                    </div>
+                </tab>
+                <tab heading="Variants">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <smart-input formControlName='tpt_no' label="TPT No"></smart-input>
+                        </div>
+
+                        <div class="col-md-6">
+                            <smart-input formControlName='dimensions' label="Dimensions"></smart-input>
+                        </div>
+                        <div class="col-md-6">
+                            <smart-input formControlName='volume' label="Volume"></smart-input>
+                        </div>
+                        <div class="col-md-6">
+                            <smart-input formControlName='volume_unit' label="Volume Unit"></smart-input>
+                        </div>
+
+                        <div class="col-md-6">
+                            <smart-input formControlName='weight' label="Weight"></smart-input>
+                        </div>
+                        <div class="col-md-6">
+                            <smart-input formControlName='gross_weight' label="Gross Weight"></smart-input>
+                        </div>
+
+                        <div class="col-md-6">
+                            <smart-input formControlName='net_weight' label="Net Weight"></smart-input>
+                        </div>
+                        <div class="col-md-6">
+                            <smart-input formControlName='weight_unit' label="Weight Unit"></smart-input>
+                        </div>
+                        <div class="col-md-6">
+                            <smart-input formControlName='mat_width' label="Mat Width"></smart-input>
+                        </div>
+                        <div class="col-md-6">
+                            <smart-input formControlName='mat_height' label="MAt Height"></smart-input>
+                        </div>
+                        <div class="col-md-6">
+                            <smart-input formControlName='mat_length' label="Mat Length"></smart-input>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <smart-input formControlName='conversion_formula' label="Conversion Formula"></smart-input>
+                        </div>
+
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <smart-checkbox formControlName='mat_lock_status' label="Mat Lock Status:"></smart-checkbox>
+                    
+                    </div>
+                </tab>
+                <tab heading="Inventory">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <smart-input formControlName='reorder_level' label="Reorder Level"></smart-input>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <smart-input formControlName='min_qty' label="Min Qty"></smart-input>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <smart-input formControlName='max_qty' label="Max Qty"></smart-input>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <smart-input formControlName='old_material_code' label="Old Material Code"></smart-input>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <smart-input formControlName='ean_category' label="EAN Category"></smart-input>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <smart-input formControlName='ean_ups_category' label="EAN UPS Code"></smart-input>
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+                            <smart-input formControlName='remarks' label="Remarks"></smart-input>
+                        </div>
+
+
+                    </div>
+                    
+                </tab>
+                <tab heading="Development">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <smart-input formControlName='material_developer' label="Material Developer"></smart-input>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <smart-input formControlName='composition' label="Composition"></smart-input>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <smart-input formControlName='construction' label="Construction"></smart-input>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <smart-input formControlName='thickness' label="Thickness"></smart-input>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <smart-select formControlName='first_season' [items]="season" label="First Season"></smart-select>
+                        </div>
+                        <div class="col-md-6">
+                            <smart-select formControlName='dev_type' [items]="devtype" label="Developmet Type"></smart-select>
+                        </div>
+                        <div class="col-md-6">
+                            <smart-select formControlName='mat_release_status' [items]="releasestatus" label="Mat Release Status"></smart-select>
+                        </div>
+                       
+
+                    
+
+                    </div>
+                    
+                </tab>
+                <tab *ngIf="materials"  heading="Purchase">
+
+                    <smart-materialvendors [matId] = 'materials.id' ></smart-materialvendors>
+                </tab>
+                <tab *ngIf="materials"  heading="Season">
+
+                    <smart-materialseasons [matId] = 'materials.id' ></smart-materialseasons>
+                </tab>
+            </tabset> 
+
+
+        </div>
+
+
+        <div class="border-faded border-left-0 border-right-0 border-bottom-0 d-flex flex-row align-items-center">
+            <button type="submit" class="btn btn-primary ml-auto waves-effect waves-themed mt-2"
+                type="submit">{{title === 'Add' ? 'Save' : 'Update'}}</button>
+        </div>
+    
+    </form>
+</smart-modal>

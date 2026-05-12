@@ -1,0 +1,29 @@
+import {createFeatureSelector, createSelector} from '@ngrx/store';
+import { Customer } from './customer';
+import {CustomerState, customerFeatureKey, selectAll} from './customer.reducer';
+
+const featureState = createFeatureSelector<CustomerState>(customerFeatureKey);
+const relationId = (value: any) => value && value.id ? value.id : value;
+
+export const selectAllCustomers = createSelector(
+    featureState,
+    selectAll,
+);
+
+export const allCustomerLoaded = createSelector(
+    featureState,
+    state => state.allCustomersLoaded,
+);
+
+export const selectCurrentCustomer = createSelector(
+    featureState,
+    state => state.currentCustomer
+)
+export const selectByClientID = createSelector(
+    selectAllCustomers,
+    (customers: Customer[], id) => {
+        const customer = customers.filter(c => relationId(c.client) == id)
+        return customer;
+    }
+)
+

@@ -1,0 +1,111 @@
+<smart-modal title="{{title}}  PO Detail">
+    <form [formGroup]="fg" (ngSubmit)="onSubmit($event)">
+        <div class="panel-content">
+            <div class="row">
+                <div class="col-md-4">
+                    <smart-select formControlName='production_order' [items]="poheads" name='po_number'
+                        label="Production order">
+                    </smart-select>
+                </div>
+                <!-- <div class="col-md-4">
+                    <smart-select formControlName='production_order_sub' [items]="posubs"  label="Article">
+                    </smart-select>
+                </div> -->
+                <div class="col-md-4">
+                    <smart-select formControlName='article_size' [items]="sizes" name='size' label="Article Size">
+                    </smart-select>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='technical_size' label="Technical Size"></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='order_qty' label="Order Qty"></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='unit_price' label="Unit Price"></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='extra_charges' label="Extra Charges"></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='any_other_charges' label="Any Other Charges"></smart-input>
+                </div>
+                
+                <div class="col-md-4">
+                    <smart-input formControlName='over_production' label="Over Production"></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='adjust_from_stock' label="Adjust from Stock"></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='adjusted_po' label="Adjusted PO"></smart-input>
+                </div>
+                <!-- 
+                
+                <div class="col-md-4">
+                    <smart-input formControlName='plan_date' label="Plan Date" type='date'></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='qc_date' label="QC Date" type='date'></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='dispatch_date' label="Dispatch Date" type='date'></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='replacement_qty' label="Replacement Qty"></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='replacement_date' label="Replacement Date" type='date'></smart-input>
+                </div> -->
+                <div class="col-md-4">
+                    <smart-input formControlName='res_date' label="RES Date" type='date'></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='pr_number' label="PR Number "></smart-input>
+                </div>
+                <div class="col-md-4">
+                    <smart-input formControlName='class_code' label="Class Code"></smart-input>
+                </div>
+                <!-- <div class="col-md-12">
+                    <smart-checkbox formControlName='order_status' label="Order Status"></smart-checkbox>
+                </div>
+                <div class="col-md-12">
+                    <smart-checkbox formControlName='res_status' label="RES Status"></smart-checkbox>
+                </div>
+                <div class="col-md-12">
+                    <smart-checkbox formControlName='plan_status' label="Plan Status"></smart-checkbox>
+                </div>
+                <div class="col-md-12">
+                    <smart-checkbox formControlName='dispatch_status' label="Dispatch Status"></smart-checkbox>
+                </div>
+               
+                <div class="col-md-12">
+                    <smart-checkbox formControlName='qc_status' label="QC Status"></smart-checkbox>
+                </div> -->
+                <div class="col-md-12">
+                    <smart-checkbox formControlName='lock_status' label="Lock Status"></smart-checkbox>
+                </div>
+                <div class="col-md-12">
+                    <smart-checkbox formControlName='status' label="Status"></smart-checkbox>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="col-md-6" *ngIf="podetail">
+            <button  *ngIf="podetail && podetail.res_status == false" class="btn btn-warning ml-auto waves-effect waves-themed mt-2" type="button"  (click)="reserveMat($event)">Reserve PO</button>
+            <button *ngIf="podetail && podetail.res_status == true" class="btn btn-danger ml-auto waves-effect waves-themed mt-2" type="button"  (click)="undoreserveMat($event)"> Undo-Reserve PO</button>
+
+        </div>
+        <div class="border-faded border-left-0 border-right-0 border-bottom-0 d-flex flex-row align-items-center">
+
+            <button type="submit" class="btn btn-primary ml-auto waves-effect waves-themed mt-2" type="submit">{{title
+                === 'Add' ? 'Save' : 'Save'}}</button>
+
+
+        </div>
+
+
+    </form>
+</smart-modal>

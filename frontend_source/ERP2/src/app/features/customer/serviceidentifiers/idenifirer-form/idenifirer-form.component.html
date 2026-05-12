@@ -1,0 +1,53 @@
+<smart-modal title="{{title}} Article Size">
+    <form [formGroup]="fg" (ngSubmit)="onSubmit($event)">
+        <div class="panel-content">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <smart-select formControlName='client' [items]="clients"   (changeEvt)="onChangeClient($event)" label="Client" ></smart-select>
+                </div>
+                
+                <div class="col-md-6">
+                    <smart-select formControlName='customer' label="Customer" [items]="customers"></smart-select>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='name' label="Name" ></smart-input>
+                </div>
+             
+                <div class="col-md-6">
+                    <smart-input formControlName='identifier' type="number" label="Identifier"></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='f1'  label="SDIField1"></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='f2'  label="SDIField2"></smart-input>
+                </div>
+            
+                <div class="col-md-6">
+                    <smart-input formControlName='f3'  label="SDIField3"></smart-input>
+                </div>
+            
+                <div class="col-md-6">
+                    <smart-input formControlName='f4'  label="SDIField4"></smart-input>
+                </div>
+            
+                <div class="col-md-6">
+                    <smart-input formControlName='f5'  label="SDIField5"></smart-input>
+                </div>
+            
+                <div class="col-md-12">
+                    <smart-checkbox formControlName='status'  label="Status"></smart-checkbox>
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <div class="border-faded border-left-0 border-right-0 border-bottom-0 d-flex flex-row align-items-center">
+            <button type="submit" class="btn btn-primary ml-auto waves-effect waves-themed mt-2"
+                type="submit">{{title === 'Add' ? 'Save' : 'Save'}}</button>
+        </div>
+    </form>
+</smart-modal>

@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+out-tsc/
+.angular/
+
+# Runtime databases and logs
+*.sqlite
+*.sqlite3
+*.db
+*.log
+*.out
+*.err
+ERP2/backend/data/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Local editor and OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local environment files
+.env
+.env.*
+
+# Test reports and browser artifacts
+playwright-report/
+test-results/
+coverage/

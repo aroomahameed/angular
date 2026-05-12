@@ -1,0 +1,20 @@
+<smart-panel >
+    <h2 panelTitle><i class="fal fa-list"></i>&nbsp;PO Head</h2>
+    <button panelToolbar class="btn btn-primary" (click)="onCreate()"> <i class="fal fa-plus-circle"></i> Create</button>
+    
+    <div panelContent>
+        <smart-table 
+        [items]="pohead" 
+        [columns]="columns" 
+        [selectable] = "false" 
+        [editable]="true" 
+        [deletable]="true" 
+        [createNext]="true" 
+        (editEvt)="onEdit($event)"
+        (deleteEvt)="ondelete($event)"
+        createNextToolTip = "Add PO Sub"
+        (createNextEvt)="oncreatesub($event)"
+        >
+        </smart-table>
+    </div>
+</smart-panel> 

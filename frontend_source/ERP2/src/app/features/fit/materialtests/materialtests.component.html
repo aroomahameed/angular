@@ -1,0 +1,54 @@
+<smart-modal title="{{title}} Materials Tests">
+    <form [formGroup]="fg" (ngSubmit)="onSubmit($event)">
+        <div class="panel-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <smart-input formControlName='version' label="Version"></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='lab_no' label="Lab No"></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-select formControlName='material_name' [items]="material" label="Material Name">
+                    </smart-select>
+                </div>
+                <div class="col-md-6">
+                    <smart-select formControlName='material_type' [items]="material_types" label="Material type">
+                    </smart-select>
+                </div>
+                <div class="col-md-12">
+                    <smart-input formControlName='remarks' label="Remarks"></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='test_date' label="Test Date" type='date'></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-select formControlName='test' [items]="test" label="Test"></smart-select>
+                </div>
+                <div class="col-md-6">
+                    <smart-select formControlName='test_status' [items]="test_status" label="Test status">
+                    </smart-select>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='tester_name' label="Tester Name"></smart-input>
+                </div>
+                <div class="col-md-12">
+                    <smart-input formControlName='tester_remarks' label="Tester Remarks"></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input type="file" formControlName='test_link' label="Test Link"></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input type="file" formControlName='tds_link' label="TDS Link"></smart-input>
+                </div>
+                <div class="col-md-12">
+                    <smart-checkbox formControlName='status' label=" Test Status"></smart-checkbox>
+                </div>
+            </div>
+            <div class="border-faded border-left-0 border-right-0 border-bottom-0 d-flex flex-row align-items-center">
+                <button type="submit" class="btn btn-primary ml-auto waves-effect waves-themed mt-2" type="submit"
+                    *ngIf="!viewStatus">{{title === 'Add' ? 'Save' : 'Update'}}</button>
+            </div>
+        </div>
+    </form>
+</smart-modal>

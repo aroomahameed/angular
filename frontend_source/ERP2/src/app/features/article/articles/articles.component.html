@@ -1,0 +1,23 @@
+<smart-panel >
+    <h2 panelTitle><i class="fal fa-list"></i>&nbsp;Article</h2>
+    <button panelToolbar class="btn btn-primary" (click)="onCreate()"> <i class="fal fa-plus-circle"></i> Create</button>
+    
+    <div panelContent>
+        <smart-table 
+        [items]="article" 
+        [columns]="columns" 
+        [selectable] = "false" 
+        [editable]="true" 
+        [deletable]="true" 
+        [createNext]="true" 
+        (editEvt)="onEdit($event)"
+        (deleteEvt)="ondelete($event)"
+        createNextToolTip = "Create article size"
+        (createNextEvt)="oncreateartsize($event)"
+        >
+        </smart-table>
+    </div>
+
+   
+ 
+</smart-panel> 

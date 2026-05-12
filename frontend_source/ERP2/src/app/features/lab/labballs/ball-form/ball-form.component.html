@@ -1,0 +1,57 @@
+<smart-modal title="{{title}} Ball ">
+    <form [formGroup]="fg" (ngSubmit)="onSubmit($event)">
+        <div class="panel-content">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <smart-input formControlName='date'  label="Date"  type="date"></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-select formControlName='article_no' label="Article No" [items]='article' ></smart-select>
+                </div>
+            
+                <div class="col-md-6">
+                    <smart-input formControlName='prd_month' label="Production Month "   ></smart-input>
+                </div>
+              
+                <div class="col-md-6">
+                    <smart-input formControlName='qty_received' label="Received Qty" ></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input  formControlName='purpose'   label="Purpose" ></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='sender_ref' label="Sender Reference" ></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='sender_name' label="Sender Name" ></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='receiver_name' label="Receiver Name" ></smart-input>
+                </div>
+
+                <div class="col-md-6">
+                    <smart-input formControlName='qty_returned' label="Returned Qty" ></smart-input>
+                </div>
+                <div class="col-md-6">
+                    <smart-input formControlName='return_date' label="Return Date" type="date" ></smart-input>
+                </div>
+                <div class="col-md-12">
+                    <smart-input formControlName='returned_person_name' label="Returned Person Name "  ></smart-input>
+                </div>
+              
+              
+                <div class="col-md-12">
+                    <smart-checkbox formControlName='status'  label="Status"></smart-checkbox>
+                </div>
+
+            </div>
+
+           
+        </div>
+        <div class="border-faded border-left-0 border-right-0 border-bottom-0 d-flex flex-row align-items-center">
+            <button type="submit" class="btn btn-primary ml-auto waves-effect waves-themed mt-2"
+                type="submit">{{title === 'Add' ? 'Save' : 'Save'}}</button>
+        </div>
+    </form>
+</smart-modal>
